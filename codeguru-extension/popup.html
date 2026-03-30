@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeGuru</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 320px;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0F0F14;
+      color: #EEEDF2;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 20px 14px;
+      border-bottom: 1px solid #1E1E2A;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #7C3AED, #06B6D4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+
+    .header-text h1 {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, #A78BFA, #22D3EE);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header-text p {
+      font-size: 11px;
+      color: #62627A;
+      margin-top: 1px;
+    }
+
+    /* ── Open Sidebar Button ── */
+    .open-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: calc(100% - 40px);
+      margin: 16px 20px 8px;
+      padding: 13px 20px;
+      background: linear-gradient(135deg, #7C3AED, #06B6D4);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+      font-family: inherit;
+    }
+
+    .open-btn:hover { opacity: 0.9; }
+    .open-btn:active { transform: scale(0.97); }
+    .open-btn svg { width: 18px; height: 18px; fill: white; }
+
+    /* ── Status ── */
+    .status-section {
+      padding: 12px 20px 0;
+    }
+
+    .status-section h2 {
+      font-size: 10px;
+      font-weight: 600;
+      color: #62627A;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 10px;
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 12px;
+      background: #16161E;
+      border-radius: 8px;
+      margin-bottom: 6px;
+    }
+
+    .status-label {
+      font-size: 12px;
+      color: #A0A0B8;
+    }
+
+    .status-val {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #374151;
+    }
+
+    .dot.online  { background: #10B981; box-shadow: 0 0 6px rgba(16,185,129,0.5); }
+    .dot.offline { background: #EF4444; }
+
+    .val-online  { color: #10B981; }
+    .val-offline { color: #EF4444; }
+    .val-model   { color: #A78BFA; }
+    .val-neutral { color: #62627A; }
+
+    /* ── Tips ── */
+    .tips-section {
+      padding: 14px 20px 6px;
+    }
+
+    .tips-section h2 {
+      font-size: 10px;
+      font-weight: 600;
+      color: #62627A;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 10px;
+    }
+
+    .tip {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 8px 0;
+      border-bottom: 1px solid #16161E;
+    }
+
+    .tip:last-child { border-bottom: none; }
+
+    .tip-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+    .tip p {
+      font-size: 12px;
+      color: #A0A0B8;
+      line-height: 1.5;
+    }
+
+    .tip code {
+      background: rgba(124,58,237,0.15);
+      color: #A78BFA;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-family: Consolas, monospace;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      padding: 12px 20px 16px;
+      text-align: center;
+    }
+
+    .footer p {
+      font-size: 11px;
+      color: #3A3A52;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">⚡</div>
+    <div class="header-text">
+      <h1>CodeGuru</h1>
+      <p>AI Coding Assistant · v1.0.0</p>
+    </div>
+  </div>
+
+  <!-- Open Sidebar Button -->
+  <button class="open-btn" id="open-sidebar-btn">
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/><path d="M7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
+    Open Sidebar on This Page
+  </button>
+
+  <!-- Status -->
+  <div class="status-section">
+    <h2>Connection</h2>
+
+    <div class="status-row">
+      <span class="status-label">Ollama Server</span>
+      <span class="status-val" id="ollama-val">
+        <span class="dot" id="ollama-dot"></span>
+        <span id="ollama-text">Checking...</span>
+      </span>
+    </div>
+
+    <div class="status-row">
+      <span class="status-label">Model</span>
+      <span class="status-val val-model" id="model-val">codeguru</span>
+    </div>
+
+    <div class="status-row">
+      <span class="status-label">Endpoint</span>
+      <span class="status-val val-neutral">localhost:11434</span>
+    </div>
+  </div>
+
+  <!-- Tips -->
+  <div class="tips-section">
+    <h2>Quick Tips</h2>
+    <div class="tip">
+      <span class="tip-icon">💬</span>
+      <p>Click the <strong style="color:#EEEDF2">floating button</strong> on any page to open the sidebar</p>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">🖱️</span>
+      <p><strong style="color:#EEEDF2">Select text</strong> on a page to focus CodeGuru on that content</p>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">⚡</span>
+      <p>Use <code>Explain Page</code>, <code>Summarize</code>, or <code>Review Code</code> for quick actions</p>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">🔌</span>
+      <p>Make sure Ollama is running: <code>ollama run codeguru</code></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Built by Bhargavi Battula ✨</p>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
